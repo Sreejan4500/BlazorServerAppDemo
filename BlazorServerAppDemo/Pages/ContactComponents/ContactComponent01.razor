@@ -1,18 +1,12 @@
 ﻿<p>
-    <b>Name: </b><span>@FirstName @LastName</span>
+    <b>Name: </b><span>@CurrentContact.FirstName @CurrentContact.LastName</span>
     <br />
-    <b>Email: </b><span>@Email</span>
+    <b>Email: </b><span>@CurrentContact.Email</span>
 </p>
 
 
 @code
 {
     [Parameter]
-    public string FirstName { get; set; }
-
-    [Parameter]
-    public string LastName { get; set; }
-
-    [Parameter]
-    public string Email { get; set; }
+    public Contact CurrentContact { get; set; }
 }

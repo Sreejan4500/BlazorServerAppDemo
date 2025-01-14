@@ -4,7 +4,7 @@
 
 @foreach(var contact in contacts)
 {
-    <ContactComponent01 FirstName="@contact.FirstName" LastName="@contact.LastName" Email="@contact.Email"></ContactComponent01>
+    <ContactComponent01 CurrentContact="contact"></ContactComponent01>
 }
  
 @code{
