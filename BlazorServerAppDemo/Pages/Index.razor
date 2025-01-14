@@ -1,0 +1,41 @@
+﻿@page "/"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@foreach(var contact in contacts)
+{
+    <p>
+        <b>Name: </b><span>@contact.FirstName @contact.LastName</span>
+        <br />
+        <b>Email: </b><span>@contact.Email</span>
+    </p>
+}
+
+@code{
+    private List<Contact> contacts;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        contacts = new List<Contact>
+        {
+            new Contact
+            {
+                FirstName = "Sreejan",
+                LastName = "Chowdhury",
+                Email = "sc@gmail.com"
+            },
+            new Contact
+            {
+                FirstName = "Akash",
+                LastName = "Derasree",
+                Email = "skyad@gmail.com"
+            }
+        };
+    }
+}
