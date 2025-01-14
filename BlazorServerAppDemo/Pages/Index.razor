@@ -1,18 +1,10 @@
 ﻿@page "/"
+@using BlazorServerAppDemo.Pages.ContactComponents
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
 
 @foreach(var contact in contacts)
 {
-    <p>
-        <b>Name: </b><span>@contact.FirstName @contact.LastName</span>
-        <br />
-        <b>Email: </b><span>@contact.Email</span>
-    </p>
+    <ContactComponent01 FirstName="@contact.FirstName" LastName="@contact.LastName" Email="@contact.Email"></ContactComponent01>
 }
  
 @code{
