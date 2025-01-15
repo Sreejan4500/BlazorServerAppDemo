@@ -2,7 +2,7 @@
 @using BlazorServerAppDemo.Pages.ContactComponents
 
 <label>
-    <input type="checkbox" @onchange="(() => {DisplayEmail = !DisplayEmail;})"/> 
+    <input type="checkbox" @bind="DisplayEmail"/> 
     <span>Display Email</span>
 </label>
 <br />
