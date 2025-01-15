@@ -1,10 +1,15 @@
 ﻿@page "/"
 @using BlazorServerAppDemo.Pages.ContactComponents
 
+<label>
+    <input type="checkbox" @onchange="(() => {DisplayEmail = !DisplayEmail;})"/> 
+    <span>Display Email</span>
+</label>
+<br />
 
 @foreach(var contact in contacts)
 {
-    <ContactComponent01 CurrentContact="contact"></ContactComponent01>
+    <ContactComponent01 CurrentContact="contact" DisplayEmail="@DisplayEmail"></ContactComponent01>
 }
  
 <br />
@@ -29,6 +34,8 @@
         {"placeholder", "Placeholder 03"},
         {"type", "number"}
     };
+    private bool DisplayEmail = false;  
+
     protected override void OnInitialized()
     {
         base.OnInitialized();

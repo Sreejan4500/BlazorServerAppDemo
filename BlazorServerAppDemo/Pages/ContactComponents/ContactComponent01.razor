@@ -1,7 +1,18 @@
 ﻿<p>
     <b>Name: </b><span>@CurrentContact.FirstName @CurrentContact.LastName</span>
     <br />
-    <b>Email: </b><span>@CurrentContact.Email</span>
+
+    @if(DisplayEmail)
+    {
+        <b>Email: </b><span>@CurrentContact.Email</span>
+        <br />
+    }
+    @if(displayInfo)
+    {
+        <span>The Email Address is @CurrentContact.Email and the name is @CurrentContact.FirstName @CurrentContact.LastName</span>
+    }
+    <br />
+    <button @onclick="@(() => { displayInfo = !displayInfo;})">@buttonName()</button>
 </p>
 
 
@@ -9,4 +20,16 @@
 {
     [Parameter]
     public Contact CurrentContact { get; set; }
+    [Parameter]
+    public bool DisplayEmail { get; set; }
+
+    private bool displayInfo = false;
+    private const string showInfo = "Show Info";
+    private const string hideInfo = "Hide Info";
+
+    private string buttonName()
+    {
+        if (displayInfo) return hideInfo;
+        else return showInfo;
+    }
 }
