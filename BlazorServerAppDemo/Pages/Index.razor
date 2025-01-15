@@ -7,9 +7,28 @@
     <ContactComponent01 CurrentContact="contact"></ContactComponent01>
 }
  
+<br />
+<MyTextBox placeholder="Placeholder 01" typeof="text" disabled="disabled"></MyTextBox>
+
+<br />
+<MyTextBox @attributes="@(new Dictionary<string, object>
+{
+    {"placeholder", "Placeholder 02"},
+    {"type", "text"}
+})"></MyTextBox>
+
+<br />
+<MyTextBox @attributes="MyTextAttributes"></MyTextBox>
+
+
 @code{
     private List<Contact> contacts;
 
+    private Dictionary<string, object> MyTextAttributes = new Dictionary<string, object>
+    {
+        {"placeholder", "Placeholder 03"},
+        {"type", "number"}
+    };
     protected override void OnInitialized()
     {
         base.OnInitialized();
