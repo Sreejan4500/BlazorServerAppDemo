@@ -5,15 +5,11 @@
 
 @if(Contacts is null)
 {
-    <br />
-    <span>Contacts are loading...</span>
-    <br />
+    @NullFragment
 }
 else if(Contacts.Count == 0)
 {
-    <br />
-    <span>No contact to display...</span>
-    <br />
+    @EmptyContacts
 }
 else
 {
@@ -25,6 +21,10 @@ else
 
 @code
 {
+    [Parameter]
+    public RenderFragment NullFragment { get; set; }
+    [Parameter]
+    public RenderFragment EmptyContacts { get; set; }
     [Parameter]
     public List<Contact> Contacts{ get; set; }
 

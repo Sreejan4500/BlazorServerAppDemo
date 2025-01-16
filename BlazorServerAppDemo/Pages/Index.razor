@@ -1,7 +1,18 @@
 ﻿@page "/"
 @using BlazorServerAppDemo.Pages.ContactComponents
 
-<ContactList Contacts="contacts"></ContactList> 
+<ContactList Contacts="contacts">
+    <NullFragment>
+        <br />
+        <span>Contacts are loading...</span>
+        <br />
+    </NullFragment>
+    <EmptyContacts>
+        <br />
+        <span>No contact to display...</span>
+        <br />
+    </EmptyContacts>
+</ContactList> 
 
 <br />
 <MyTextBox placeholder="Placeholder 01" typeof="text" disabled="disabled"></MyTextBox>
