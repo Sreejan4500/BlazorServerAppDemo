@@ -9,7 +9,7 @@
 
 @foreach(var contact in contacts)
 {
-    <ContactComponent01 CurrentContact="contact" DisplayEmail="@DisplayEmail"></ContactComponent01>
+    <ContactComponent01 CurrentContact="contact" DisplayEmail="@DisplayEmail" DeleteCurrentContact="@DeleteContact"></ContactComponent01>
 }
  
 <br />
@@ -55,5 +55,10 @@
                 Email = "skyad@gmail.com"
             }
         };
+    }
+
+    private void DeleteContact(Contact contact)
+    {
+        contacts.Remove(contact);
     }
 }
