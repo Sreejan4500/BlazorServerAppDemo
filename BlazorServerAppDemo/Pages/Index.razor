@@ -1,17 +1,8 @@
 ﻿@page "/"
 @using BlazorServerAppDemo.Pages.ContactComponents
 
-<label>
-    <input type="checkbox" @bind="DisplayEmail"/> 
-    <span>Display Email</span>
-</label>
-<br />
+<ContactList Contacts="contacts"></ContactList> 
 
-@foreach(var contact in contacts)
-{
-    <ContactComponent01 CurrentContact="contact" DisplayEmail="@DisplayEmail" DeleteCurrentContact="@DeleteContact"></ContactComponent01>
-}
- 
 <br />
 <MyTextBox placeholder="Placeholder 01" typeof="text" disabled="disabled"></MyTextBox>
 
@@ -36,9 +27,9 @@
     };
     private bool DisplayEmail = false;  
 
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
-        base.OnInitialized();
+        await Task.Delay(5000);
 
         contacts = new List<Contact>
         {
@@ -55,10 +46,8 @@
                 Email = "skyad@gmail.com"
             }
         };
-    }
 
-    private void DeleteContact(Contact contact)
-    {
-        contacts.Remove(contact);
+        await base.OnInitializedAsync();
+
     }
 }
