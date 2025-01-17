@@ -1,6 +1,8 @@
 ﻿@page "/"
 @using BlazorServerAppDemo.Pages.ContactComponents
 
+<h1>Index Page</h1>
+
 <ContactList Contacts="contacts">
     <NullFragment>
         <br />
@@ -27,38 +29,3 @@
 <br />
 <MyTextBox @attributes="MyTextAttributes"></MyTextBox>
 
-
-@code{
-    private List<Contact> contacts;
-
-    private Dictionary<string, object> MyTextAttributes = new Dictionary<string, object>
-    {
-        {"placeholder", "Placeholder 03"},
-        {"type", "number"}
-    };
-    private bool DisplayEmail = false;  
-
-    protected async override Task OnInitializedAsync()
-    {
-        await Task.Delay(5000);
-
-        contacts = new List<Contact>
-        {
-            new Contact
-            {
-                FirstName = "Sreejan",
-                LastName = "Chowdhury",
-                Email = "sc@gmail.com"
-            },
-            new Contact
-            {
-                FirstName = "Akash",
-                LastName = "Derasree",
-                Email = "skyad@gmail.com"
-            }
-        };
-
-        await base.OnInitializedAsync();
-
-    }
-}
