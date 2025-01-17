@@ -1,0 +1,48 @@
+﻿@page "/demo01"
+@inject ContactService contactService
+@using BlazorServerAppDemo.Pages.ContactComponents
+
+<h3>demo01</h3>
+<br />
+
+<input placeholder="First Name" @bind=firstName />
+<br />
+<input placeholder="Last Name" @bind=lastName />
+<br />
+<input placeholder="Email" @bind=email />
+<br />
+
+<button @onclick="AddContact">Add Contact</button>
+<br />
+
+
+<ContactList Contacts="contactService.Contacts">
+    <EmptyContacts>
+        <b>No contact to display</b>
+    </EmptyContacts>
+    <NullFragment>
+        <b>Contacts are loading..</b>
+    </NullFragment>
+</ContactList>
+
+<br />
+@* <button @onclick="contactService.AddContact">Add Contact</button>
+
+<br /> *@
+
+
+@code
+{
+    private string firstName, lastName, email;
+
+    private void AddContact()
+    {
+        var contact = new Contact
+        {
+            FirstName = firstName,
+            LastName = lastName,
+            Email = email
+        };
+        contactService.AddContact(contact);
+    }
+}
