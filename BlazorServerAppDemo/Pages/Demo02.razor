@@ -1,0 +1,15 @@
+﻿@page "/demo02"
+@inject ContactService contactService
+@using BlazorServerAppDemo.Pages.ContactComponents
+
+<h3>Demo02</h3>
+
+<ContactList Contacts="contactService.Contacts">
+    <EmptyContacts>
+        <b>No contact to display</b>
+    </EmptyContacts>
+    <NullFragment>
+        <b>Contacts are loading..</b>
+    </NullFragment>
+</ContactList>
+
