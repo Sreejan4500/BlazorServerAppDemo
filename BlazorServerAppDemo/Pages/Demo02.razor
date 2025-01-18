@@ -1,10 +1,10 @@
 ﻿@page "/demo02"
-@inject ContactService contactService
+@inject IContactService contactService
 @using BlazorServerAppDemo.Pages.ContactComponents
 
 <h3>Demo02</h3>
 
-<ContactList Contacts="contactService.Contacts">
+<ContactList Contacts="contactService.GetContacts()">
     <EmptyContacts>
         <b>No contact to display</b>
     </EmptyContacts>
