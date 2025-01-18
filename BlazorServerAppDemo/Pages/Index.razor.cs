@@ -20,7 +20,7 @@ namespace BlazorServerAppDemo.Pages
         {
             await Task.Delay(5000);
 
-            contacts = contactService.GetContacts()v;
+            contacts = contactService.GetContacts();
             //contacts = new List<Contact>
             //{
             //    new() {
