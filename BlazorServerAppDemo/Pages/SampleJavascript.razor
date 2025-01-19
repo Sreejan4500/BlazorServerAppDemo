@@ -47,8 +47,8 @@
 
     private async Task CallInvokeMethodJavascript()
     {
-        // var sampleJsReference = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/sample.js");
-        // await sampleJsReference.InvokeVoidAsync("callInstanceMethod", DotNetObjectReference.Create(this));
-        await jsRuntime.InvokeVoidAsync("callInstanceMethod", DotNetObjectReference.Create(this));
+        var sampleJsReference = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/sample.js");
+        await sampleJsReference.InvokeVoidAsync("callInstanceMethod", DotNetObjectReference.Create(this));
+        // await jsRuntime.InvokeVoidAsync("callInstanceMethod", DotNetObjectReference.Create(this));
     }
 }
