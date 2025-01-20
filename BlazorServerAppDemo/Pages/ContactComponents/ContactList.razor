@@ -7,21 +7,25 @@
 
 <br />
 
-@if(Contacts is null)
+@if(DisplayContacts)
 {
-    @NullFragment
-}
-else if(Contacts.Count == 0)
-{
-    @EmptyContacts
-}
-else
-{
-    @foreach(var contact in Contacts)
+    @if (Contacts is null)
     {
-        <ContactComponent01 CurrentContact="contact" DisplayEmail="@DisplayEmail" DeleteCurrentContact="DeleteContact"></ContactComponent01>
+        @NullFragment
+    }
+    else if (Contacts.Count == 0)
+    {
+        @EmptyContacts
+    }
+    else
+    {
+        @foreach (var contact in Contacts)
+        {
+            <ContactComponent01 CurrentContact="contact" DisplayEmail="@DisplayEmail" DeleteCurrentContact="DeleteContact"></ContactComponent01>
+        }
     }
 }
+
 
 @code
 {
@@ -32,7 +36,8 @@ else
     [Parameter]
     public List<Contact> Contacts{ get; set; }
 
-    private bool DisplayEmail = false;
+    private bool DisplayEmail = true;
+    private bool DisplayContacts = true;
 
     private async Task DeleteContact(Contact contact)
     {
@@ -41,4 +46,7 @@ else
         if (result != true) return;
         Contacts.Remove(contact);
     }
+
+    public void ShowContacts() => DisplayContacts = true;
+    public void HideContacts() => DisplayContacts = false;
 }

@@ -3,7 +3,7 @@
 
 <h1>Index Page </h1>
 
-<ContactList Contacts="contacts">
+<ContactList Contacts="contacts" @ref="ContactList">
     <NullFragment>
         <br />
         <span>Contacts are loading...</span>
@@ -28,4 +28,8 @@
 
 <br /> 
 <MyTextBox @attributes="MyTextAttributes"></MyTextBox>
+
+<br />
+<br />
+<button @onclick="HideContacts">Show/Hide Contacts</button>
 

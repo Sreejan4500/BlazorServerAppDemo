@@ -24,8 +24,8 @@ namespace BlazorServerAppDemo
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             //services.AddSingleton<ContactService>();
-            //services.AddSingleton<IContactService, ContactService>();
-            services.AddSingleton<IContactService, ContactServiceTesting>();
+            services.AddSingleton<IContactService, ContactService>();
+            //services.AddSingleton<IContactService, ContactServiceTesting>();
 
         }
 

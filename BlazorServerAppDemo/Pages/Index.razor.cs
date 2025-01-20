@@ -1,4 +1,5 @@
 ﻿using BlazorServerAppDemo.Models;
+using BlazorServerAppDemo.Pages.ContactComponents;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,8 +9,10 @@ namespace BlazorServerAppDemo.Pages
     public partial class Index
     {
         [Inject]
-        IContactService contactService {  get; set; }
+        IContactService ContactService {  get; set; }
         private List<Contact> contacts;
+        private ContactList ContactList; // Here, we have done the component reference thing.
+        private bool isContactDisplayed = true;
 
         private Dictionary<string, object> MyTextAttributes = new() {
             {"placeholder", "Placeholder 03"},
@@ -18,25 +21,35 @@ namespace BlazorServerAppDemo.Pages
 
         protected async override Task OnInitializedAsync()
         {
-            await Task.Delay(5000);
+            await Task.Delay(2000);
 
-            contacts = contactService.GetContacts();
-            //contacts = new List<Contact>
-            //{
-            //    new() {
-            //        FirstName = "Sreejan",
-            //        LastName = "Chowdhury",
-            //        Email = "sc@gmail.com"
-            //    },
-            //    new() {
-            //        FirstName = "Akash",
-            //        LastName = "Derasree",
-            //        Email = "skyad@gmail.com"
-            //    }
-            //};
+            contacts = ContactService.GetContacts();
+            contacts = new List<Contact>
+            {
+                new() {
+                    FirstName = "Sreejan",
+                    LastName = "Chowdhury",
+                    Email = "sc@gmail.com"
+                },
+                new() {
+                    FirstName = "Akash",
+                    LastName = "Derasree",
+                    Email = "skyad@gmail.com"
+                }
+            };
 
             await base.OnInitializedAsync();
 
+        }
+
+        private void HideContacts()
+        {
+            isContactDisplayed = !isContactDisplayed;
+
+            if (isContactDisplayed)
+                ContactList.ShowContacts();
+            else
+                ContactList.HideContacts();
         }
     }
 }
