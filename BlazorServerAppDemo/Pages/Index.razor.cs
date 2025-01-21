@@ -10,6 +10,10 @@ namespace BlazorServerAppDemo.Pages
     {
         [Inject]
         IContactService ContactService {  get; set; }
+
+        [Inject]
+        NavigationManager NavigationManager { get; set; }
+
         private List<Contact> contacts;
         private ContactList ContactList; // Here, we have done the component reference thing.
         private bool isContactDisplayed = true;
@@ -50,6 +54,11 @@ namespace BlazorServerAppDemo.Pages
                 ContactList.ShowContacts();
             else
                 ContactList.HideContacts();
+        }
+
+        private void NavigateToTest()
+        {
+            NavigationManager.NavigateTo("./testpage");
         }
     }
 }

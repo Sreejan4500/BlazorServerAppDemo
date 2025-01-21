@@ -1,8 +1,17 @@
 ﻿@page "/testpage"
 @page "/testpage2"
+@inject NavigationManager NavigationManager
 
 <h3>TestPageDirective</h3>
+<br />
+<br />
+<button @onclick="NavigateToIndex">Navigate to Index page</button>
 
 @code {
+
+    private void NavigateToIndex()
+    {
+        NavigationManager.NavigateTo("./");
+    }
 
 }
