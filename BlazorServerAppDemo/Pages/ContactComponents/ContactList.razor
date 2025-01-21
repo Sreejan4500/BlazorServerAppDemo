@@ -21,11 +21,12 @@
     {
         @foreach (var contact in Contacts)
         {
-            <ContactComponent01 CurrentContact="contact" DisplayEmail="@DisplayEmail" DeleteCurrentContact="DeleteContact"></ContactComponent01>
+            @* <ContactComponent01 CurrentContact="contact" DisplayEmail="@DisplayEmail" DeleteCurrentContact="DeleteContact"></ContactComponent01> *@
+            <ContactComponent01 CurrentContact="contact" DisplayEmail="@DisplayEmail" DeleteCurrentContact="RequestDeletePermission"></ContactComponent01>
         }
     }
 }
-
+<DeleteConfirmation OnConfirmed="OnDeleteConfirmed" @ref="deleteConfirmation"></DeleteConfirmation>
 
 @code
 {
@@ -35,6 +36,8 @@
     public RenderFragment EmptyContacts { get; set; }
     [Parameter]
     public List<Contact> Contacts{ get; set; }
+
+    private DeleteConfirmation deleteConfirmation;
 
     private bool DisplayEmail = true;
     private bool DisplayContacts = true;
@@ -49,4 +52,19 @@
 
     public void ShowContacts() => DisplayContacts = true;
     public void HideContacts() => DisplayContacts = false;
+
+    private void OnDeleteConfirmed(Contact contact)
+    {
+        Contacts.Remove(contact);
+        deleteConfirmation.Hide();
+    }
+
+    private void RequestDeletePermission(Contact contact)
+    {
+        deleteConfirmation.BodyContent = $"Do you want to delete {contact.FirstName} {contact.LastName}?";
+        deleteConfirmation.HeaderContent = "DELETE CONFIRMATION";
+
+        deleteConfirmation.ContactToDelete = contact;
+        deleteConfirmation.Show();
+    }
 }

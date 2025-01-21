@@ -1,0 +1,40 @@
+﻿@if(ShowPopup)
+{
+    <div class="modal-backdrop show"></div>
+    <div class="modal fade show" style="display:block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@HeaderContent</h5>
+                    <button type="button" @onclick="Hide" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+                </div>
+                <div class="modal-body">
+                    <p>@BodyContent</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" @onclick="Hide" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" @onclick="Confirm" class="btn btn-danger">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code
+{
+    private bool ShowPopup = false;
+    public string BodyContent{ get; set; }
+    public string HeaderContent { get; set; }
+    public Contact ContactToDelete{ get; set; }
+
+    [Parameter]
+    public EventCallback<Contact> OnConfirmed { get; set; }
+
+    public void Show() => ShowPopup = true;
+    public void Hide() => ShowPopup = false;
+
+    private async Task Confirm()
+    {
+        await OnConfirmed.InvokeAsync(ContactToDelete);
+    }
+}
