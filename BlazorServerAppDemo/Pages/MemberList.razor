@@ -1,0 +1,38 @@
+﻿@page "/memberlist"
+@using BlazorServerAppDemo.Data
+@inject MemberService memberService
+
+<h3>MemberList</h3>
+
+@if (memberList == null || memberList.Count == 0)
+{
+    <span>No members to display!</span>
+}
+else
+{
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Joining Date</th>
+        </tr>
+
+        @foreach (var member in memberList)
+        {
+            <tr>
+                <MemberDetail Member="member"></MemberDetail>
+            </tr>
+        }
+    </table>
+}
+
+@code {
+    private List<Member> memberList;
+
+    protected override void OnInitialized()
+    {
+        memberList = memberService.GetMembers();
+        base.OnInitialized();
+    }
+}

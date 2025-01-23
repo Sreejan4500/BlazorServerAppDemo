@@ -1,0 +1,12 @@
+﻿@using BlazorServerAppDemo.Data
+
+<tr>@Member.MemberName</tr>
+<tr>@Member.Email</tr>
+<tr>@Member.Age</tr>
+<tr>@Member.JoiningDate</tr>
+
+
+@code{
+    [Parameter]
+    public Member Member {get;set;}
+}
