@@ -26,7 +26,10 @@ namespace BlazorServerAppDemo
             //services.AddSingleton<ContactService>();
             services.AddSingleton<IContactService, ContactService>();
             //services.AddSingleton<IContactService, ContactServiceTesting>();
-
+            
+            // For establishing connection with MS SQL Database
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddSingleton(new MemberService(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
