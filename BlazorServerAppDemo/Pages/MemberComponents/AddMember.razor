@@ -1,0 +1,29 @@
+﻿@page "/add-member"
+
+<h3>AddMember</h3>
+
+<EditForm Model="@memberViewModel" OnSubmit="SaveMember">
+    <InputText class="form-control" placeholder="Name" @bind-Value="memberViewModel.MemberName"></InputText>
+    <InputText class="form-control" placeholder="Email" @bind-Value="memberViewModel.Email"></InputText>
+    <InputNumber class="form-control" placeholder="Age" @bind-Value="memberViewModel.Age"></InputNumber>
+    <InputDate class="form-control" placeholder="Joining Date" @bind-Value="memberViewModel.JoiningDate"></InputDate>
+
+    <button class="btn btn-primary" type="submit">Save Member</button>
+</EditForm>
+
+
+
+@code {
+    private MemberViewModel memberViewModel;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        memberViewModel = new MemberViewModel();
+    }
+
+    private void SaveMember()
+    {
+        
+    }
+}
